@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "traslochiloschi-1579269914905",
+  "private_key_id": "0803aeae09c80d5d4f52c47ee24cd92ce6d18e30",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCbQx5SigimDqfX\nyOfRJndVTBI6682R+vPed1na5bUpHezDgczB3qyhMXTZUsXvR6jtKYNYCsy70d2Z\np+MR9VsA6Ij1OH8Lwo/8xYkVBnFTe1AHF4emYeHuCRPzykCj4NUao3mnTEA3Wg70\nVPZmG5Xhlq67TYnh3W6rzeuqLy1hHP3j8Dq4EtBVdUW7XseA+2tcDEflzqp0fZmz\nkb26UwrnF1r3CbdS11gfAq7LPwOCeoaEkmmb/c6B9GrCbXjDCjpqEtuHAb6dP2V5\nxQVyxwcjDBfCyq8A5IyHybkrNstd6nOeXe+hz0PlHsOMUkVdvU4zPacHevAneQkv\nutvZ5ZTLAgMBAAECggEALUjvUC24hg6iP9r2Wld42OUeMBdU1y418P4otCLpqvty\ncjeqrCUxfrZ5GWX+G2NwTvQbvhMwUdvNYaLJJRTGHUa1o6h9zcVKz/QhnoNJjIrb\n9aWUSCAmkJIPQr0MC4BpR6LEudoQpNRcpkEduPx0w956SmE8RSebvvqJsRKfjsI8\nRZQfU6h2h/H42IPLysyZaxFk5qDImAp4Ns6wl5qV9WNbltF64MeVs+AqvvA34eyQ\nVG/7z3qs9Xdtum4AcZ4JzvXRbY+zzGLCLv2LilRiypem6UAuodBGj0L2TFfI02AO\nIQc/uCiVIwOJZyPZ9UqNm5GHmN3M13Iw/gTldShrCQKBgQDZLOAhCKtZoSwSr6dl\nWt5gWymmow0TZowdILSTW6ii1tPR8wQyai2rJOOp8Z6G9u1ycVyr4rmTUplUaLCC\nlBGKrMsNz/9rH2eeuF6nb+rKk2Ily3DY+AGFldhdntP+j1S5Gf0/tz4C8JuPeddG\na6eOLDAfH8RTF6CljRv1XooIvwKBgQC3BML5NgQnpGHUy5xTgLWVAWj8MkYsjwVD\nnHRPLqMnT3/h95eflV4sza+qEtBaqO2z6n39sa4G7NDpumxQHrutaLl2KYcVGBrk\ngPwoGBob3r3JS0ttW6eLpTkN4Wa1Wranf5rXYP6MBrQ92mbyIIKlmi6wVQgxIKAz\nhq9oM7xK9QKBgQC+a3mNnWNYsFfLfpag6P7or6YihP63Dwg1lfKe7hQ7y29ou9Ln\nPXATisHPxZpBLotd+AXQdHhQs3DbsPtrUtbap81WrBSBYcTiRzg/SYMt4fKBvxKQ\nO0xiS9OtqtCoeBZKQn5p+op123AaajOWfFgq8ZW0BI+IZ8QkxEhKaX1QUwKBgHef\nsSDa4ZRXqWpBO4iI1Cb0qP5OjfeJ89LhbFRlE1caa2fzQTOZmdiHCI6NhYn8aIH0\nfy1W+XylRVe/9hPYQqtxi+dj9VsgSlOYyzgZqNcWm836XO65vaVU9RnRfiSDimeo\nzDiCuV4k86KKIkeYYEyFnoa6zYPu40dKfVQKnMQRAoGAH6CO07rRCDVf3uUx6+o4\nm/6LeMO27ZdHn1oda9AmR0xogcVt/r3LwWpEuKHC6evcWROJeZL4nPXmMPVpuaDP\nmbI1LsNKrOegXqB8+kD8un+5Zv3C7huZL07gYwy4dS7mxe3ZzmcUYjnC2slvfp5e\nfPQnKYY8ixHbMgbL14rj9kU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "calendar-loschi@traslochiloschi-1579269914905.iam.gserviceaccount.com",
+  "client_id": "114426639198515195993",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/calendar-loschi%40traslochiloschi-1579269914905.iam.gserviceaccount.com"
+}
