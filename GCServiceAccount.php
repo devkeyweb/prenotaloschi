@@ -1,7 +1,7 @@
 <?php
 
- require_once 'Google/autoload.php';
-   session_start();	 	
+require_once 'Google/autoload.php';
+session_start();	 	
 /************************************************	
  The following 3 values an befound in the setting	
  for the application you created on Google 	 	
