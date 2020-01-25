@@ -36,11 +36,14 @@ foreach ($events->getItems() as $event) {
     endif;
 
     $array = array(
-	    'id' => $event->id,
-	    'title' => $event->getSummary(),
+	    //'id' => $event->id,
+	    //'title' => $event->getSummary(),
 	    'start' => $stardate,
-	    'editable' => false,
-	    'allDay' => true
+	    //'editable' => false,
+	    'allDay' => true,
+	    'rendering' => 'background',
+	    'overlap' => 'false',
+        'color' => '#ff0000'
 	);
 
 	$allevents[] = $array;
