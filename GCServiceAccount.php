@@ -39,94 +39,80 @@ $client->setScopes($scopes);
 $service = new Google_Service_Calendar($client);  
 
 $listaCalendari = $service->calendarList->listCalendarList();
-echo '<pre>'.var_export($listaCalendari,true).'</pre>';
+//echo '<pre>'.var_export($listaCalendari,true).'</pre>';
+
+$calendarList = $service->calendarList->listCalendarList();
+
+foreach ($calendarList->getItems() as $calendarListEntry) {
+
+	echo "ID calendar ".$calendarListEntry->id." ".$calendarListEntry->getSummary()."<br>";
+	
+	//echo '<pre>';
+	//print_r($calendarListEntry);
+	//echo '</pre>';
 
 
-// echo "<pre>";
-// print_r($service);
-// echo "</pre>";
+	// get events 
+	$events = $service->events->listEvents($calendarListEntry->id);
 
-// $calendarList = $service->calendarList->listCalendarList();
+	// foreach ($events->getItems() as $event) {
+	// 	if($event->start->date != ""):
+	// 		$stardate = $event->start->date;
+	// 	else:
+	// 		$stardate = $event->start->dateTime;
+	// 	endif;
 
-// foreach ($calendarList->getItems() as $calendarListEntry) {
+	// 	echo "----- ".$stardate." ".$event->id." ".$event->getSummary()." ".$event->description."<br>";
+	// 	//echo '<pre>';
+	// 	//print_r($event);
+	// 	//echo '</pre>';
+	// }
+}
 
-// 			echo $calendarListEntry->getSummary()."<br>\n";
+// npgn0246su8qp20c0n1mf2usv4@group.calendar.google.com TS-0001
+$id_ts0001 = "npgn0246su8qp20c0n1mf2usv4@group.calendar.google.com";
 
+// INSERIMENTO EVENTO
+// $events = $service->events->listEvents($id_ts0001);
 
-// 			// get events 
-// 			$events = $service->events->listEvents($calendarListEntry->id);
+// $event_to_add = new Google_Service_Calendar_Event(array(
+//   'summary' => '[PENDING] New event insert - #TSO00012sd',
+//   'location' => 'Milano, via Mazzini 202',
+//   'description' => 'Sign. Castagna - Test inserimento evento',
+//   'start' => array(
+//     'dateTime' => '2020-01-28T09:00:00-00:00',
+//     'timeZone' => 'Europe/Rome',
+//   ),
+//   'end' => array(
+//     'dateTime' => '2020-01-28T17:00:00-00:00',
+//     'timeZone' => 'Europe/Rome',
+//   ),
+//   'recurrence' => array(  // ripetilo per due giorni consecutivi
+//     'RRULE:FREQ=DAILY;COUNT=1'
+//   ),
+// ));
 
+// $event = $service->events->insert($id_ts0001, $event_to_add);
+// printf('Event created: %s <br/><br/>', $event->htmlLink);
 
-// 			foreach ($events->getItems() as $event) {
-// 			    echo "-----".$event->getSummary()."<br>";
-// 			}
-// }
+$events = $service->events->listEvents($id_ts0001);
 
+foreach ($events->getItems() as $event) {
+	if($event->start->date != ""):
+		$stardate = $event->start->date;
+	else:
+		$stardate = $event->start->dateTime;
+	endif;
 
-
-
-
-// echo "<pre>";
-// print_r($calendarList);
-// echo "</pre>";
-
-
-// $calendarId = 'primary';
-// $optParams = array(
-//   'maxResults' => 10,
-//   'orderBy' => 'startTime',
-//   'singleEvents' => true,
-//   'timeMin' => date('c'),
-// );
-// $results = $service->events->listEvents($calendarId, $optParams);
-// $events = $results->getItems();
-
-// if (empty($events)) {
-//     print "No upcoming events found.\n";
-// } else {
-//     print "Upcoming events:\n";
-//     foreach ($events as $event) {
-//         $start = $event->start->dateTime;
-//         if (empty($start)) {
-//             $start = $event->start->date;
-//         }
-//         printf("%s (%s)\n", $event->getSummary(), $start);
-//     }
-// }
+	echo "----- ".$stardate." ".$event->id." ".$event->getSummary()." ".$event->description."<br>";
+	//echo '<pre>';
+	//print_r($event);
+	//echo '</pre>';
+}
 
 
 ?>
 
-<html><body>
-
-<?php
-/*
-$calendarList  = $service->calendarList->listCalendarList();
-
-while(true) {
-	foreach ($calendarList->getItems() as $calendarListEntry) {
-
-			echo $calendarListEntry->getSummary()."<br>\n";
-
-
-			// get events 
-			$events = $service->events->listEvents($calendarListEntry->id);
-
-
-			foreach ($events->getItems() as $event) {
-			    echo "-----".$event->getSummary()."<br>";
-			}
-		}
-		$pageToken = $calendarList->getNextPageToken();
-		if ($pageToken) {
-			$optParams = array('pageToken' => $pageToken);
-			$calendarList = $service->calendarList->listCalendarList($optParams);
-		} else {
-			break;
-		}
-	}
-  */  
-?>
 
 
 
