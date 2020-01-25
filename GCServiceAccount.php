@@ -1,6 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require_once 'Google/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 session_start();	 	
 /************************************************	
  The following 3 values an befound in the setting	
@@ -14,32 +17,90 @@ session_start();
  Add the Email address as a user at the 	
  ACCOUNT Level in the GA admin. 	 	
  ************************************************/
-$client_id = '[your client]';
-	$Email_address = '[your service account email]';	 
-	$key_file_location = '[Your key]';	 	
 	
-	$client = new Google_Client();	 	
-	$client->setApplicationName("Client_Library_Examples");
-	$key = file_get_contents($key_file_location);	 
+$client = new Google_Client();	 	
+$client->useApplicationDefaultCredentials();
 
-// separate additional scopes with a comma	 
-$scopes ="https://www.googleapis.com/auth/calendar.readonly"; 	
-$cred = new Google_Auth_AssertionCredentials(	 
-	$Email_address,	 	 
-	array($scopes),	 	
-	$key	 	 
-	);	 	
-$client->setAssertionCredentials($cred);
-if($client->getAuth()->isAccessTokenExpired()) {	 	
-	$client->getAuth()->refreshTokenWithAssertion($cred);	 	
-}	 	
-$service = new Google_Service_Calendar($client);    
+putenv('GOOGLE_APPLICATION_CREDENTIALS=./traslochiloschi-1579269914905-815060bd2fb4.json');
+$client->setAuthConfig('./traslochiloschi-1579269914905-815060bd2fb4.json');
+
+$client->setApplicationName("TraslochiLoschi");
+
+//$httpClient = $client->authorize(); 
+
+$scopes = [ Google_Service_Calendar::CALENDAR, Google_Service_Calendar::CALENDAR_READONLY ];
+$client->setScopes($scopes);
+
+// OR use environment variables (recommended)
+
+// if($client->getAuth()->isAccessTokenExpired()) {	 	
+// 	$client->getAuth()->refreshTokenWithAssertion($cred);	 	
+// }	 	
+$service = new Google_Service_Calendar($client);  
+
+$listaCalendari = $service->calendarList->listCalendarList();
+echo '<pre>'.var_export($listaCalendari,true).'</pre>';
+
+
+// echo "<pre>";
+// print_r($service);
+// echo "</pre>";
+
+// $calendarList = $service->calendarList->listCalendarList();
+
+// foreach ($calendarList->getItems() as $calendarListEntry) {
+
+// 			echo $calendarListEntry->getSummary()."<br>\n";
+
+
+// 			// get events 
+// 			$events = $service->events->listEvents($calendarListEntry->id);
+
+
+// 			foreach ($events->getItems() as $event) {
+// 			    echo "-----".$event->getSummary()."<br>";
+// 			}
+// }
+
+
+
+
+
+// echo "<pre>";
+// print_r($calendarList);
+// echo "</pre>";
+
+
+// $calendarId = 'primary';
+// $optParams = array(
+//   'maxResults' => 10,
+//   'orderBy' => 'startTime',
+//   'singleEvents' => true,
+//   'timeMin' => date('c'),
+// );
+// $results = $service->events->listEvents($calendarId, $optParams);
+// $events = $results->getItems();
+
+// if (empty($events)) {
+//     print "No upcoming events found.\n";
+// } else {
+//     print "Upcoming events:\n";
+//     foreach ($events as $event) {
+//         $start = $event->start->dateTime;
+//         if (empty($start)) {
+//             $start = $event->start->date;
+//         }
+//         printf("%s (%s)\n", $event->getSummary(), $start);
+//     }
+// }
+
 
 ?>
 
 <html><body>
 
 <?php
+/*
 $calendarList  = $service->calendarList->listCalendarList();
 
 while(true) {
@@ -64,11 +125,9 @@ while(true) {
 			break;
 		}
 	}
-    
+  */  
 ?>
-Tutorial for this script can be found: <a href="http://www.daimto.com/google-calendar-api-with-php-service-account/">Google Calendar ServiceAccount PHP</a><br>
-Working Version of this script can be found here: <a href="http://www.daimto.com/Tutorials/PHP/GCServiceAccount.php">Google Calendar Service Account PHP</a><br>
-Source code for this script can be found here: <a href="http://www.daimto.com/Tutorials/PHP/GCServiceAccount.php.txt">Google CalendarService Account PHP</a>
+
 
 
 
