@@ -48,22 +48,82 @@ if(isset($_GET['code'])) {
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.1.9/jquery.datetimepicker.min.js"></script>
 
-<style type="text/css">
+<!-- fullcalendar.io -->
+<link href='../packages/core/main.css' rel='stylesheet' />
+<link href='../packages/daygrid/main.css' rel='stylesheet' />
+<link href='../packages/timegrid/main.css' rel='stylesheet' />
+<link href='../packages/list/main.css' rel='stylesheet' />
+<script src='../packages/core/main.js'></script>
+<script src='../packages/interaction/main.js'></script>
+<script src='../packages/daygrid/main.js'></script>
+<script src='../packages/timegrid/main.js'></script>
+<script src='../packages/list/main.js'></script>
+<script>
 
-#logo {
-  text-align: center;
-  width: 200px;
-    display: block;
-    margin: 100px auto;
-    border: 2px solid #2980b9;
-    padding: 10px;
-    background: none;
-    color: #2980b9;
-    cursor: pointer;
-    text-decoration: none;
-}
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      defaultDate: '2020-01-30',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: false,
+      dateClick: function(info) {
+        alert('Clicked on: ' + info.dateStr);
+        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+        alert('Current view: ' + info.view.type);
+        // change the day's background color just for fun
+        info.dayEl.style.backgroundColor = 'red';
+        if(info.view.type == 'dayGridMonth' || info.view.type == 'basicWeek') {
+          $('#calendar').fullCalendar('changeView', 'basicDay');
+          $('#calendar').fullCalendar('gotoDate', date);      
+        }
+      },
+      
+
+      events: "json-events.php",
+      loading: function(bool) { 
+        if (bool) $('#loading').show(); 
+        else $('#loading').hide();
+      },
+      eventColor: '#ff0000',
+      eventRender: function (event, element) {
+        console.log("ev ",event.event.start);
+        //var dataToFind = moment(event.event.start).format('YYYY-MM-DD');
+        //$("td[data-date='"+dataToFind+"']").addClass('activeDay');
+      },
+    });
+
+    calendar.render();
+  });
+
+</script>
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .activeDay {
+    background-color: #ff0000;
+  }
 
 </style>
+
 </head>
 
 <body>
@@ -249,7 +309,8 @@ if(isset($_GET['code'])) {
 
   </script>
 
-
+  <div id="loading">loading...</div>
+  <div id='calendar'></div>
 
 </body>
 </html>
