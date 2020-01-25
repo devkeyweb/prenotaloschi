@@ -70,6 +70,7 @@ if(isset($_GET['code'])) {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
+      locale: 'it',
       defaultDate: '2020-01-30',
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
