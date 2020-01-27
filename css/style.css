@@ -27,6 +27,18 @@ ul.navbar-nav li a {
   color: #14304e;
 }
 
+
+
+.fc-past {
+    background-color: #dddddd;
+}
+
+
+
+
+
+
+
 footer {
   margin-top:40px;
   padding:20px 0;
@@ -35,6 +47,8 @@ footer {
   font-size: 10px;
   color: #ffffff;
 }
+
+
 
 
 /* Absolute Center Spinner */
