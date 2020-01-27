@@ -120,8 +120,6 @@ if(isset($_GET['code'])) {
   }
   ?>
 
-<body>
-
   <div id="loading">loading...</div>
 
   <?php include "header.php"; ?>
@@ -130,7 +128,7 @@ if(isset($_GET['code'])) {
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Calendario Disponibilità</h1>
+        <h1 class="page-title">Calendario Disponibilità</h1>
         <p class="lead">Macchina: TS0001</p>
       </div>
 
@@ -155,7 +153,17 @@ if(isset($_GET['code'])) {
 
       </div>
 
-    </div>
+    </div> <!-- /row -->
+
+    <div class="row">    
+      <div class="col-lg-12">
+        <div class="stepButton">
+          <button type="button" class="btBack" id="bt-back" >Torna indietro</button>
+          <button type="button" class="btNext" id="submit-btn-top" >Passo successivo</button>
+         </div>
+      </div>
+    </div> <!-- /row -->
+
   </div>
 
   <?php include "footer.php"; ?>
@@ -375,11 +383,6 @@ if(isset($_GET['code'])) {
 
 
   </script> 
-
-</body>
-
-</html>
-
 
 </body>
 </html>
