@@ -22,8 +22,9 @@ h1.page-title {
 
 label { font-size: 1.1rem; }
 
-
-
+input[type="text"] { 
+    padding: 6px 12px;
+}
 
 
 /* select style */
@@ -88,20 +89,92 @@ ul.navbar-nav li a {
 
 
 
-.fc-past {
-    background-color: #dddddd;
-}
-
-
 /* calendar */
 #calendar {
   max-width: 900px;
   margin: 0 auto;
 }
 
-.activeDay {
-  background-color: #ff0000;
+
+
+.fc-scroller {
+    overflow: auto !important;
+    height: auto !important;
 }
+
+.fc-event, .fc-event-dot {
+    background-color: #e22626;
+    border: none;
+}
+
+.fc-day-grid-event.fullDay {
+  background-color: #e22626;
+  border: none;
+}
+
+.fc-day-grid-event.halfDay {
+  background-color: #ffc107;
+  border: none;
+}
+
+
+
+.fc-day-grid-container td.fc-today.todayDay {
+    background-color: #aaaaaa !important;
+    cursor: not-allowed;
+}
+
+.fc-day-grid-container td.activeDay {
+    background-color: #0fd1e4 !important;
+}
+
+.fc-day-grid-container .fc-past {
+  background-color: #dddddd;
+  cursor: not-allowed;
+}
+
+.fc-day-grid-container .fc-future {
+  background-color: #49a921;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.fc-day-grid-container .fc-future.halfDayMonth {
+  background-color: #ffc107;
+  opacity: 0.9;
+}
+.fc-day-grid-container .fc-future.fullDayMonth {
+  background-color: #e22626;
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+
+.fc-day-grid-event .fc-content { /* oscuro il div content giorno con evento */
+  display: none;
+}
+
+table.sidebarSummary {  }
+
+table.sidebarSummary tr { }
+table.sidebarSummary tr:nth-child(even) { background: #fff; }
+table.sidebarSummary tr:nth-child(odd) { background: #f1f1f1; }
+
+table.sidebarSummary tr td.label { font-size: 13px;
+    font-style: italic;
+    font-weight: 300;
+    width: 40%;
+    padding: 10px 10px; }
+
+table.sidebarSummary tr td.content { font-size: 22px;
+    line-height: 22px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 10px; }
+
+table.sidebarSummary tr td.content.small { font-size: 16px; font-style: normal; font-weight: 500; }
+
+table.sidebarSummary tr td.content small { font-size: 13px; font-weight: 500; }
 
 /* GRID MEZZI */
 
@@ -183,6 +256,21 @@ ul.datiMezzo li {
   border: 0;
   box-shadow: none;
   vertical-align: top;
+}
+
+a.btNextSmall {
+  height: 34px;
+  display: inline-block;
+  background-color: #14304e;
+  line-height: 34px;
+  padding: 0px 20px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  border: 0;
+  box-shadow: none;
+  vertical-align: top;
+  margin-top: 20px;
 }
 
 /* footer */

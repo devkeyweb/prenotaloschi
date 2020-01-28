@@ -15,7 +15,10 @@ $_SESSION['peso'] = $peso;
 $_SESSION['hingresso'] = $hingresso;
 $_SESSION['wingresso'] = $wingresso;
 
-$oreandataritorno = $_POST['provincia']; // ora andata/ritorno calcolo destinazione
+$_SESSION['citta'] = $_POST['citta']; 
+$_SESSION['indirizzo'] = $_POST['indirizzo'];
+
+$_SESSION['oreandataritorno'] = 3; // ora andata/ritorno calcolo destinazione con Google???
 
 if(isset($_POST['checkbox-1-1'])):
   $checkbox1 = $_POST['checkbox-1-1']; 
@@ -69,7 +72,7 @@ endif;
         echo "Peso: ".$peso." | ";
         echo "H. ingresso: ".$hingresso."m | ";
         echo "W. ingresso: ".$wingresso."m | ";
-        echo "Calcolo orario andata/ritorno: +".$oreandataritorno." ore ";
+        echo "Calcolo orario andata/ritorno: +".$_SESSION['oreandataritorno']." ore ";
         ?>
 
         <ul class="flex-container">
@@ -82,7 +85,7 @@ endif;
                 <li>Larghezza ingresso fino a 1,96m</li>
                 <li>Portata carrello: 300kg</li>
             </ul>
-            <a href="calendarloschi.php?code=xyz" >Seleziona mezzo</a>
+            <a href="item-calendario.php?code=xyz" class="btNextSmall" >Seleziona mezzo</a>
           </li>
           <li class="flex-item">
             <div class="imgMezzo">Elevatore Pick-up TS0002</div>
@@ -93,7 +96,7 @@ endif;
                 <li>Larghezza ingresso fino a 1,96m</li>
                 <li>Portata carrello: 300kg</li>
             </ul>
-            <a href="calendarloschi.php?code=xyz" >Seleziona mezzo</a>
+            <a href="item-calendario.php?code=xyz" class="btNextSmall" >Seleziona mezzo</a>
           </li>
           <li class="flex-item">
             <div class="imgMezzo">Elevatore Trainato TS0003</div>
@@ -104,9 +107,56 @@ endif;
                 <li>Larghezza ingresso fino a 1,96m</li>
                 <li>Portata carrello: 300kg</li>
             </ul>
-            <a href="calendarloschi.php?code=xyz" >Seleziona mezzo</a>
+            <a href="item-calendario.php?code=xyz" class="btNextSmall" >Seleziona mezzo</a>
           </li>
         </ul>
+
+      </div> <!-- /col-lg-12 -->
+
+      <div class="col-lg-12 col-xs-12">
+
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Mezzo</th>
+              <th scope="col">Piano</th>
+              <th scope="col">Peso</th>
+              <th scope="col">Altezza ingresso</th>
+              <th scope="col">Larghezza ingresso</th>
+              <th scope="col">Portata</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Elevatore Nissan<br/>TS0001</th>
+              <td>fino a 12 piani</td>
+              <td>da 0 a 300Kg</td>
+              <td>fino a 2,9m</td>
+              <td>fino a 1,96m</td>
+              <td>300kg</td>
+              <td><a href="item-calendario.php?code=ts0001" class="btNextSmall" >Seleziona mezzo</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Elevatore Pick-up<br/>TS0002</th>
+              <td>fino a 8 piani</td>
+              <td>da 0 a 400kg</td>
+              <td>fino a 2,9m</td>
+              <td>fino a 1,96m</td>
+              <td>400kg</td>
+              <td><a href="item-calendario.php?code=ts0002" class="btNextSmall" >Seleziona mezzo</a></td>
+            </tr>
+            <tr>
+              <th scope="row">Elevatore Trainato<br/>TS0003</th>
+              <td>fino a 5 piani</td>
+              <td>da 0 a 200Kg</td>
+              <td>fino a 2,9m</td>
+              <td>fino a 1,96m</td>
+              <td>200kg</td>
+              <td><a href="item-calendario.php?code=ts0003" class="btNextSmall" >Seleziona mezzo</a></td>
+            </tr>
+          </tbody>
+        </table>
 
       </div> <!-- /col-lg-12 -->
 
@@ -116,7 +166,6 @@ endif;
       <div class="col-lg-12">
         <div class="stepButton">
           <button type="button" class="btBack" id="bt-back" >Torna indietro</button>
-          <button type="button" class="btNext" id="submit-btn-top" >Passo successivo</button>
          </div>
       </div>
     </div> <!-- /row -->

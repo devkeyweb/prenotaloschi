@@ -29,8 +29,8 @@ try {
 
 	// INSERIMENTO EVENTO
 	$event_to_add = new Google_Service_Calendar_Event(array(
-	  'summary' => '[PENDING]'.$eventdata['title'],
-	  'location' => 'Milano, via Mazzini 202',
+	  'summary' => '[PENDING] Richiesta Web',
+	  'location' => $eventdata['indirizzo'].' '.$eventdata['citta'],
 	  'description' => 'Sign. Castagna - Test inserimento evento',
 	  'start' => array(
 	    'dateTime' => $eventdata['event_time']['start_time'],

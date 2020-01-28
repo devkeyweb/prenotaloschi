@@ -29,21 +29,33 @@ $allevents = array();
 $events = $service->events->listEvents($id_ts0001);
 
 foreach ($events->getItems() as $event) {
-    if($event->start->date != ""):
+	$stardate = "";
+	$enddate = "";
+	$allDay = false;
+
+    // se start->date è vuoto significa che ho uno startdate e un enddate e l'evento non è allDay, se non è vuoto l'evento è allDay
+    if(isset($event->start->date)): // evento all day
       $stardate = $event->start->date;
-    else:
+      //$enddate = $event->start->dateTime;
+      $allDay = true;
+      $classNames = ['fullDay'];
+    else: // evento NON all day
       $stardate = $event->start->dateTime;
+      $enddate = $event->end->dateTime;
+      $classNames = ['halfDay'];
     endif;
 
     $array = array(
 	    //'id' => $event->id,
 	    //'title' => $event->getSummary(),
 	    'start' => $stardate,
+	    'end' => $enddate,
 	    //'editable' => false,
-	    'allDay' => true,
-	    'rendering' => 'background',
+	    'allDay' => $allDay,
+	    //'rendering' => 'background',
 	    'overlap' => 'false',
-        'color' => '#ff0000'
+        //'color' => '#ff0000',
+        'classNames' => $classNames
 	);
 
 	$allevents[] = $array;
