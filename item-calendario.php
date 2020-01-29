@@ -128,8 +128,8 @@ if(isset($_GET['code'])) {
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="page-title">Calendario Disponibilità</h1>
-        <p class="lead">Macchina: TS0001</p>
+        <h1 class="page-title">Prenotazione servizio Traslochi Loschi  . STEP 3</h1>
+        <p class="lead">Calendario disponibilità per: TS0001</p>
       </div>
 
       <div class="col-lg-4 col-xs-12">
@@ -178,11 +178,15 @@ if(isset($_GET['code'])) {
 
           </table>
 
-          <input type="hidden" id="citta" value="<?php echo $_SESSION['citta']; ?>" />
-          <input type="hidden" id="indirizzo" value="<?php echo $_SESSION['indirizzo']; ?>" />
-          <input type="hidden" id="event-spostamento-time" value="<?php echo $_SESSION['oreandataritorno']; ?>" />
-          <input type="hidden" id="event-start-time" />
-          <input type="hidden" id="event-end-time" />
+          <input type="hidden" id="citta" name="citta" value="<?php echo $_SESSION['citta']; ?>" />
+          <input type="hidden" id="indirizzo" name="indirizzo" value="<?php echo $_SESSION['indirizzo']; ?>" />
+          
+          <input type="hidden" id="event-start-time" name="event-start-time" />
+          <input type="hidden" id="event-end-time" name="event-end-time" />
+
+          <input type="hidden" id="event-spostamento-time" name="event-spostamento-time" value="<?php echo $_SESSION['oreandataritorno']; ?>" />
+          <input type="hidden" id="event-operativita-time" name="event-operativita-time" />
+          <input type="hidden" id="event-totale-time" name="event-totale-time" />
           <button id="create-event" disabled="disabled" >Aggiungi Evento</button>
         </div>
       </form>
@@ -251,9 +255,10 @@ if(isset($_GET['code'])) {
         $(".fc-highlight").css("opacity", "0.8");
 
         console.log( " start info:", info.end);
-        $("#event-start-time-txt").html(formatDateTime(info.start));
-        $("#event-end-time-txt").html(formatDateTime(info.end));
-        $("#event-total-time").html(diffHours(info.start, info.end));
+        $("#event-start-time-txt").html(formatDateTimeIt(info.start));
+        $("#event-end-time-txt").html(formatDateTimeIt(info.end));
+        var diffH = diffHours(info.start, info.end);
+        $("#event-total-time").html(diffH);
         var opTime = operativityTime(info.start, info.end);
 
         if(opTime <= 2 ){ // non posso avere operatività minore di due ore???
@@ -268,6 +273,8 @@ if(isset($_GET['code'])) {
         
         $("#event-start-time").val(formatDateTime(info.start));
         $("#event-end-time").val(formatDateTime(info.end));
+        $("#event-operativita-time").val(opTime);
+        $("#event-totale-time").val(diffH);
       },
       selectOverlap: function(event) {
         alert(' ERRORE evento sovrapposto... ', event);
@@ -509,6 +516,23 @@ if(isset($_GET['code'])) {
     return dt;
   }
 
+  function formatDateTimeIt(dateTime) {
+    var d = new Date(dateTime),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear(),
+        hours = '' + d.getHours(),
+        minutes = '' + d.getMinutes();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    if (hours.length < 2) hours = '0' + hours;
+    if (minutes.length < 2) minutes = '0' + minutes;
+
+    var dt = [day, month, year].join('-')+" "+[hours, minutes].join(':');
+
+    return dt;
+  }
 
   function diffHours(startH, endH) {
     var dStart = new Date(startH),

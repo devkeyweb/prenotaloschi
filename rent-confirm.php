@@ -5,6 +5,12 @@ error_reporting(E_ALL);
 
 session_start();
 
+
+$_SESSION['event-spostamento-time'] = $_POST['event-spostamento-time'];
+$_SESSION['event-start-time']  = $_POST['event-start-time'];
+$_SESSION['event-end-time']  = $_POST['event-end-time'];
+$_SESSION['event-operativita-time']  = $_POST['event-operativita-time'];
+$_SESSION['event-totale-time']  = $_POST['event-totale-time'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,76 +41,102 @@ session_start();
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h1 class="page-title">Prenotazione servizio Traslochi Loschi  . STEP 1</h1>
+        <h1 class="page-title">Prenotazione servizio Traslochi Loschi  . STEP 4</h1>
       </div>
 
-      <div class="col-lg-4 col-xs-12">
-        <h2>Inserisci dati servizio</h2>
+      <div class="col-lg-6 col-xs-12">
+        <h2>Riepilogo dati servizio</h2>
 
-        <h3>Piano da raggiungere</h3>
-        <select id="piano" name="piano" autocomplete="off" class="select-css" >
-            <option value="0">Piano terra</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-          <option value="12">12</option>
-        </select><br/>
-
-        <h3>Peso da movimentare</h3>
-        <select id="peso" name="peso" autocomplete="off" class="select-css" >
-          <option value="200">0 - 200Kg</option>
-          <option value="300">201 - 300Kg</option>
-          <option value="400">301 - 400Kg</option>
-        </select><br/>
-
-        <h3>Altezza ingresso</h3>
-        <select id="hingresso" name="hingresso" autocomplete="off" class="select-css" >
-          <option value="281">da 1,55m a 2,80m</option>
-          <option value="289">da 2,80m a 2,89m</option>
-          <option value="290">oltre 2,90m</option>
-        </select><br/>
-
-        <h3>Larghezza ingresso</h3>
-        <select id="wingresso" name="wingresso" autocomplete="off" class="select-css" >
-          <option value="181">da 1,55m a 1,81m</option>
-          <option value="192">da 1,82m a 1,92m</option>
-          <option value="193">oltre 1,93m</option>
-        </select><br/><br/>
-
+        <table class="sidebarSummary">
+          <tr>
+            <td class="label">Piano da raggiungere: </td>
+            <td class="content"><?php echo $_SESSION['piano']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Peso da movimentare: </td>
+            <td class="content"><?php echo $_SESSION['peso']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Altezza ingresso: </td>
+            <td class="content"><?php echo $_SESSION['hingresso']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Larghezza ingresso: </td>
+            <td class="content"><?php echo $_SESSION['wingresso']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Indirizzo: </td>
+            <td class="content"><?php echo $_SESSION['indirizzo']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Citta: </td>
+            <td class="content"><?php echo $_SESSION['citta']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Inizio attività</td>
+            <td class="content">
+              <?php
+              $date_start = new DateTime($_SESSION['event-start-time']);
+              echo $date_start->format('d-m-Y H:i');
+              ?>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Fine attività</td>
+            <td class="content">
+              <?php
+              $date_end = new DateTime($_SESSION['event-end-time']);
+              echo $date_end->format('d-m-Y H:i');
+              ?>
+            </td>
+          </tr>
+          <tr>
+            <td class="label">Tempo necessario per andata/ritorno: </td>
+            <td class="content"><?php echo $_SESSION['event-spostamento-time']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Tempo operatività: </td>
+            <td class="content"><?php echo $_SESSION['event-operativita-time']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Tempo totale: </td>
+            <td class="content"><?php echo $_SESSION['event-totale-time']; ?></td>
+          </tr>
+          <tr>
+            <td class="label">Costo totale servizio: </td>
+            <td class="content">
+              <?php $tot = $_SESSION['event-totale-time']*90; 
+              echo $tot." €<br/>";
+              ?><small>Comprensivo di 2 operatori</small></td>
+          </tr>
+        </table>
+        
       </div> <!-- /col-lg-4 -->
 
-      <div class="col-lg-4 col-xs-12">
+      <div class="col-lg-6 col-xs-12">
 
-        <h2>Luogo richiesta servizio</h2>
-        <h3>Città</h3>
-        <select id="citta" name="citta" autocomplete="off" class="select-css" ><br/>
-          <option value="Modena">Modena (+1h)</option>
-          <option value="Bologna">Bologna (+2h)</option>
-          <option value="Reggio Emilia">Reggio Emilia (+1h)</option>
-          <option value="Milano">Milano (+3h)</option>
-        </select><br/>
+        <h2>Dati anagrafici</h2>
+        <div class="form-group">
+          <h3>Nome *</h3>
+          <input type="text" id="nome" name="nome" autocomplete="off" ></input>
+        </div>
+        <div class="form-group">
+          <h3>Cognome *</h3>
+          <input type="text" id="cognome" name="cognome"  autocomplete="off"  ></input>
+        </div>
+        <div class="form-group">
+          <h3>Azienda</h3>
+          <input type="text" id="company" name="company"  autocomplete="off"  ></input>
+        </div>
+        <div class="form-group">
+          <h3>Email *</h3>
+          <input type="text" id="email" name="email"  autocomplete="off"  ></input>
+        </div>
+        <div class="form-group">
+          <h3>Telefono *</h3>
+          <input type="text" id="tel" name="tel"  autocomplete="off"  ></input>
+        </div>                        
 
-        <h3>Indirizzo *</h3>
-        <input type="text" id="indirizzo" name="indirizzo"  placeholder="Via Lorem Ipsum, 23" ></input>
-        <br/>
-
-      </div> <!-- /col-lg-4 -->
-
-      <div class="col-lg-4 col-xs-12">
-
-        <h2>Vincoli Speciali *</h2>
-        <input type="checkbox" name="checkbox-1-1" value="0" class="regular-checkbox" id="checkbox-1-1" /> <label class="ckLabel" for="checkbox-1-1">Centri storici</label><br>
-        <input type="checkbox" name="checkbox-1-2" value="1" class="regular-checkbox" id="checkbox-1-2" /> <label class="ckLabel" for="checkbox-1-2">Zone pedonali</label><br>
-        <input type="checkbox" name="checkbox-1-3" value="2" class="regular-checkbox" id="checkbox-1-3" /> <label class="ckLabel" for="checkbox-1-3">Richiesta autorizzazione luogo pubblico</label><br>
-        <br/><br/><br/>
         <div class="form-group">
             <input type="checkbox" class="form-checkbox" name="checkPrivacy" id="checkPrivacy" >
             <strong>Dichiaro di aver letto l'<a href="#">Informativa</a> sul trattamento dei dati personali (Art. 13 del D.lgs. 196/2003)</strong>
@@ -117,8 +149,8 @@ session_start();
     <div class="row">    
       <div class="col-lg-12">
         <div class="stepButton">
-          <!-- <a href="#" class="btBack" >Torna indietro</a> -->
-          <button type="button" class="btNext" id="submit-btn-top" >Passo successivo</button>
+          <button type="button" class="btBack" id="bt-back" >Torna indietro</button>
+          <button type="button" class="btNext" id="submit-btn-top" >Conferma prenotazione</button>
          </div>
       </div>
 
